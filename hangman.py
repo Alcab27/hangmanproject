@@ -12,6 +12,8 @@ def borrarPantalla():
 def comparacionLetra():
     letra = input('Ingrese una letra: ')
     print(letra)
+    return letra
+    
 
 
 def read():
@@ -25,17 +27,22 @@ def read():
     
     numRandom = random.randint(1,100)
     valor = numPalbras.get(numRandom)
+    valor = valor.lower()
     # numval = len(valor)
-    guiones = []
     guion = ''
     for i in range(1, len(valor)):
-        # guiones.append('-')
         guion += '_ '
     print(guion)
-    # print(valor)
+    print(valor)
     # print(numRandom)
-    for i in guiones:
-        print(i)
+    letra = comparacionLetra()
+    for i, comp in enumerate(valor):
+        if letra == comp:
+            borrarPantalla()
+            print('llegamos')
+            break
+        else:
+            continue
     # for i, palab in numPalbras.items():
     #     print(i, palab)
     # time.sleep(4)
@@ -44,7 +51,7 @@ def read():
 def run():
     print('¡Adivina la palabra!\n')
     read()
-    comparacionLetra()
+    # comparacionLetra()
     
     
 
