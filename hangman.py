@@ -39,14 +39,16 @@ def read():
     letra = comparacionLetra()
     guion = ''
     for i, comp in enumerate(valor):
-        
+        print(i, comp)
         if letra != comp:
+            if comp == '\n':
+                break
             guion += '_ '
             # borrarPantalla()
             # print('llegamos')
             # print(valor.replace(letra, '_'))
             # # time.sleep(2.5)
-            # # break
+        #     # # break
         elif letra == comp:
             guion += letra
     print(guion)
