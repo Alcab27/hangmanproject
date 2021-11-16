@@ -14,6 +14,7 @@ def comparacionLetra():
     print(letra)
     return letra
     
+    
 
 
 def read():
@@ -36,13 +37,19 @@ def read():
     print(valor)
     # print(numRandom)
     letra = comparacionLetra()
+    guion = ''
     for i, comp in enumerate(valor):
-        if letra == comp:
-            borrarPantalla()
-            print('llegamos')
-            break
-        else:
-            continue
+        
+        if letra != comp:
+            guion += '_ '
+            # borrarPantalla()
+            # print('llegamos')
+            # print(valor.replace(letra, '_'))
+            # # time.sleep(2.5)
+            # # break
+        elif letra == comp:
+            guion += letra
+    print(guion)
     # for i, palab in numPalbras.items():
     #     print(i, palab)
     # time.sleep(4)
