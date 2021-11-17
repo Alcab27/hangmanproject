@@ -11,10 +11,9 @@ def borrarPantalla():
 
 def comparacionLetra():
     letra = input('Ingrese una letra: ')
-    print(letra)
+    letra = letra
+    # print(letra)
     return letra
-    
-    
 
 
 def read():
@@ -22,6 +21,7 @@ def read():
     with open('./archivos/palabras.txt', 'r') as f:
         for line in f:
             palabras.append(line) 
+
     numPalbras = {}
     for i, palabra in enumerate(palabras, 1):
         numPalbras.setdefault(i, palabra)
@@ -29,33 +29,41 @@ def read():
     numRandom = random.randint(1,100)
     valor = numPalbras.get(numRandom)
     valor = valor.lower()
-    # numval = len(valor)
-    guion = ''
-    for i in range(1, len(valor)):
-        guion += '_ '
-    print(guion)
+
+    palcomp = valor
+    palcomp = palcomp.replace('\n', '')
+
     print(valor)
-    # print(numRandom)
-    letra = comparacionLetra()
-    guion = ''
-    for i, comp in enumerate(valor):
-        print(i, comp)
-        if letra != comp:
-            if comp == '\n':
-                break
-            guion += '_ '
-            # borrarPantalla()
-            # print('llegamos')
-            # print(valor.replace(letra, '_'))
-            # # time.sleep(2.5)
-        #     # # break
-        elif letra == comp:
-            guion += letra
-    print(guion)
-    # for i, palab in numPalbras.items():
-    #     print(i, palab)
-    # time.sleep(4)
-    # borrarPantalla()
+    # print(palcomp)
+
+    valor = list(valor)
+    guion = []
+
+    for i in range(1, len(valor)):
+        guion.append('_ ')
+
+    impguion = ''
+    for ele in guion:
+        impguion += ele
+    print(impguion)
+
+    # print(guion)
+    for i in range(0, 100):
+        constPal = ''
+        letra = comparacionLetra()
+        for i, comp in enumerate(valor):
+            if letra == comp:
+                guion[i] = letra
+        for ele in guion:
+            constPal += ele
+        if palcomp == constPal:
+            borrarPantalla()
+            print(constPal)
+            print('Ganaste!!')
+            break
+        borrarPantalla()
+        print(constPal)
+        
 
 def run():
     print('¡Adivina la palabra!\n')
