@@ -33,23 +33,22 @@ def read():
     palcomp = valor
     palcomp = palcomp.replace('\n', '')
 
-    print(valor)
+    # print(valor)
     # print(palcomp)
 
     valor = list(valor)
-    guion = []
-
-    for i in range(1, len(valor)):
-        guion.append('_ ')
+    guion = ['_ '  for i in range (1, len(valor))]
 
     impguion = ''
     for ele in guion:
         impguion += ele
     print(impguion)
-
+    vidas = 10 
+    vidasglob = 10
     # print(guion)
-    for i in range(0, 100):
+    for i in range(0, vidas):
         constPal = ''
+        vidasglob = vidasglob - 1
         letra = comparacionLetra()
         for i, comp in enumerate(valor):
             if letra == comp:
@@ -60,9 +59,12 @@ def read():
             borrarPantalla()
             print(constPal)
             print('Ganaste!!')
-            break
+            #break
         borrarPantalla()
         print(constPal)
+    if vidasglob == 0:
+        borrarPantalla()
+        print('Perdiste ):')
         
 
 def run():
