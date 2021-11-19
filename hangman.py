@@ -2,6 +2,8 @@ import os
 import time
 import random
 
+from monito import HANGMANPICS
+
 
 def borrarPantalla():
     if os.name == "posix":
@@ -14,6 +16,69 @@ def comparacionLetra():
     letra = letra
     # print(letra)
     return letra
+
+def trashendo_hangman(vidas):
+    HANGMANPICS = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+# =========''']
+
+    HANGMANPICS.reverse()
+    mono = {}
+    for i, val in enumerate(HANGMANPICS, 0):
+        mono.setdefault(i, val)
+    
+    print(mono.get(vidas))
+#     for i in HANGMANPICS: 
+#         print(i)
+#         return i
+        
 
 
 def read():
@@ -44,31 +109,35 @@ def read():
         impguion += ele
     print(impguion)
     vidas = 10 
-    vidasglob = 10
+    vidasglob = 7
     # print(guion)
-    for i in range(0, vidas):
+    for i in range(0, vidasglob):
         constPal = ''
         vidasglob = vidasglob - 1
         letra = comparacionLetra()
         for i, comp in enumerate(valor):
             if letra == comp:
                 guion[i] = letra
+            # elif letra != comp:
+            #     vidasglob = vidasglob - 1
         for ele in guion:
             constPal += ele
         if palcomp == constPal:
             borrarPantalla()
             print(constPal)
             print('Ganaste!!')
-            #break
         borrarPantalla()
+        trashendo_hangman(vidasglob)
         print(constPal)
     if vidasglob == 0:
+        time.sleep(1)
         borrarPantalla()
-        print('Perdiste ):')
+        print('Perdiste ):\nLa palabra era: ', palcomp)
         
 
 def run():
     print('¡Adivina la palabra!\n')
+    # trashendo_hangman()
     read()
     # comparacionLetra()
     
