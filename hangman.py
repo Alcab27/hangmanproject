@@ -132,6 +132,8 @@ def read():
             borrarPantalla()
             print(constPal)
             print('Ganaste!!')
+            time.sleep(2)
+            borrarPantalla()
             break
         borrarPantalla()
         trashendo_hangman(vidas)
