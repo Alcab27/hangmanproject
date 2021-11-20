@@ -12,10 +12,20 @@ def borrarPantalla():
         os.system ("cls")
 
 def comparacionLetra():
-    letra = input('Ingrese una letra: ')
-    letra = letra
-    # print(letra)
-    return letra
+    try:
+        letra = input('Ingrese una letra: ')
+        if letra.isnumeric(): 
+            raise ValueError('No se pueden ingresar números')
+        if len(letra) >= 2:
+            raise TypeError('Solo puedes ingresar una letra')
+        return letra
+    except ValueError as ve:
+        print(ve)
+        time.sleep(2)
+    except TypeError as re:
+        print(re)
+        time.sleep(2)
+    
 
 def trashendo_hangman(vidas):
     HANGMANPICS = ['''
@@ -75,10 +85,7 @@ def trashendo_hangman(vidas):
         mono.setdefault(i, val)
     
     print(mono.get(vidas))
-#     for i in HANGMANPICS: 
-#         print(i)
-#         return i
-        
+    return ''
 
 
 def read():
@@ -108,36 +115,40 @@ def read():
     for ele in guion:
         impguion += ele
     print(impguion)
-    vidas = 10 
-    vidasglob = 7
+    vidas = 6
     # print(guion)
-    for i in range(0, vidasglob):
+    for i in range(0, 100):
         constPal = ''
-        vidasglob = vidasglob - 1
+        # vidasglob -= 1
         letra = comparacionLetra()
         for i, comp in enumerate(valor):
             if letra == comp:
                 guion[i] = letra
-            # elif letra != comp:
-            #     vidasglob = vidasglob - 1
+        if letra not in valor:
+             vidas -= 1
         for ele in guion:
             constPal += ele
         if palcomp == constPal:
             borrarPantalla()
             print(constPal)
             print('Ganaste!!')
+            break
         borrarPantalla()
-        trashendo_hangman(vidasglob)
+        trashendo_hangman(vidas)
         print(constPal)
-    if vidasglob == 0:
-        time.sleep(1)
-        borrarPantalla()
-        print('Perdiste ):\nLa palabra era: ', palcomp)
-        
+        if vidas == 0:
+            time.sleep(1)
+            borrarPantalla()
+            print('Perdiste ):\nLa palabra era: ', palcomp)
+            time.sleep(2)
+            borrarPantalla()
+            break
+            
 
 def run():
+    borrarPantalla()
+    print(trashendo_hangman(6))
     print('¡Adivina la palabra!\n')
-    # trashendo_hangman()
     read()
     # comparacionLetra()
     
