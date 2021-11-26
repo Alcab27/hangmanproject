@@ -1,2 +1,2 @@
 # hangmanproject
-Hangman game in with python.  
+Hangman game with python.  
